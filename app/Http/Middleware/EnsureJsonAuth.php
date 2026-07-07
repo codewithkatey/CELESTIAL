@@ -11,7 +11,7 @@ class EnsureJsonAuth
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->session()->has('auth_user')) {
-            if ($request->expectsJson() || $request->is('api/*')) {
+            if ($request->expectsJson() || $request->is('data/*')) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Unauthenticated.',

@@ -2,9 +2,9 @@
     'use strict';
 
     const API = {
-        products: '/api/products',
-        categories: '/api/categories',
-        images: '/api/images',
+        products: '/data/products',
+        categories: '/data/categories',
+        images: '/data/images',
     };
 
     let categories = [];
@@ -203,7 +203,7 @@
                     <div class="product-image">
                         ${imageHtml}
                         <span class="product-badge ${statusClass}">${p.status || 'active'}</span>
-                        ${isLowStock ? '<span class="product-badge badge-low-stock" style="top:auto;bottom:0.75rem;">Low Stock</span>' : ''}
+                        ${isLowStock ? '<span class="product-badge badge-low-stock product-badge-bottom">Low Stock</span>' : ''}
                     </div>
                     <div class="product-body">
                         <div class="product-category">${escapeHtml(p.category_name || 'Uncategorized')}</div>

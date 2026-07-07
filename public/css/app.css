@@ -496,18 +496,42 @@ body.zoom-open {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    padding: 0.3rem 0.7rem;
+    padding: 0.35rem 0.75rem;
     border-radius: var(--radius-pill);
-    font-size: 0.65rem;
-    font-weight: 600;
+    font-size: 0.68rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.28);
+    z-index: 2;
 }
 
-.badge-active { background: rgba(123, 201, 160, 0.2); color: #4a9a6e; }
-.badge-inactive { background: rgba(160, 128, 128, 0.15); color: var(--text-muted); }
-.badge-draft { background: rgba(232, 168, 124, 0.2); color: #c08050; }
-.badge-low-stock { background: rgba(224, 122, 122, 0.18); color: var(--danger); }
+.product-badge-bottom {
+    top: auto;
+    bottom: 0.75rem;
+}
+
+.badge-active {
+    background: #16a34a;
+    color: #fff;
+}
+
+.badge-inactive {
+    background: #64748b;
+    color: #fff;
+}
+
+.badge-draft {
+    background: #d97706;
+    color: #fff;
+}
+
+.badge-low-stock {
+    background: #dc2626;
+    color: #fff;
+}
 
 .product-body {
     padding: 1.3rem;
