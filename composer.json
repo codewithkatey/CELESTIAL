@@ -46,7 +46,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "vercel-build": [
+        "vercel": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php -r \"if (!file_exists('.env') || !preg_match('/^APP_KEY=base64:/m', file_get_contents('.env'))) { passthru('php artisan key:generate --force'); }\""
         ]
