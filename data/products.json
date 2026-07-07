@@ -1,0 +1,137 @@
+[
+    {
+        "id": "prod-denim-jacket",
+        "name": "Classic Denim Jacket",
+        "sku": "OUT-001",
+        "category_id": "cat-outerwear",
+        "description": "Timeless medium-wash denim jacket with button closure and chest pockets.",
+        "price": 79.99,
+        "sale_price": 64.99,
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "colors": [
+            "Indigo",
+            "Light Wash"
+        ],
+        "stock": 24,
+        "status": "active",
+        "image": "\/assets\/images\/dom-hill-nimElTcTNyY-unsplash.jpg",
+        "created_at": "2026-02-01T09:00:00+00:00",
+        "updated_at": "2026-02-01T09:00:00+00:00"
+    },
+    {
+        "id": "prod-linen-shirt",
+        "name": "Relaxed Linen Shirt",
+        "sku": "TOP-014",
+        "category_id": "cat-tops",
+        "description": "Breathable linen shirt with a relaxed fit, perfect for warm weather.",
+        "price": 49.99,
+        "sale_price": null,
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ],
+        "colors": [
+            "White",
+            "Sand",
+            "Sage"
+        ],
+        "stock": 38,
+        "status": "active",
+        "image": "\/assets\/images\/james-lewis-ohiyigDmlYc-unsplash.jpg",
+        "created_at": "2026-02-05T11:30:00+00:00",
+        "updated_at": "2026-02-05T11:30:00+00:00"
+    },
+    {
+        "id": "prod-slim-jeans",
+        "name": "Slim Fit Jeans",
+        "sku": "BTM-022",
+        "category_id": "cat-bottoms",
+        "description": "Stretch denim slim-fit jeans with a modern tapered leg.",
+        "price": 69.99,
+        "sale_price": null,
+        "sizes": [
+            "28",
+            "30",
+            "32",
+            "34",
+            "36"
+        ],
+        "colors": [
+            "Dark Blue",
+            "Black"
+        ],
+        "stock": 3,
+        "status": "active",
+        "image": "\/assets\/images\/milada-vigerova-p8Drpg_duLw-unsplash.jpg",
+        "created_at": "2026-02-10T14:00:00+00:00",
+        "updated_at": "2026-02-10T14:00:00+00:00"
+    },
+    {
+        "id": "prod-midi-dress",
+        "name": "Floral Midi Dress",
+        "sku": "DRS-008",
+        "category_id": "cat-dresses",
+        "description": "Elegant floral print midi dress with adjustable straps.",
+        "price": 89.99,
+        "sale_price": 74.99,
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
+        "colors": [
+            "Rose Print",
+            "Navy Print"
+        ],
+        "stock": 12,
+        "status": "active",
+        "image": "\/assets\/images\/raquel-gambin-kS3YkVtf85U-unsplash.jpg",
+        "created_at": "2026-02-12T16:45:00+00:00",
+        "updated_at": "2026-02-12T16:45:00+00:00"
+    },
+    {
+        "id": "prod-leather-tote",
+        "name": "Minimal Leather Tote",
+        "sku": "ACC-003",
+        "category_id": "cat-accessories",
+        "description": "Premium faux-leather tote bag with interior zip pocket.",
+        "price": 59.99,
+        "sale_price": null,
+        "sizes": [
+            "One Size"
+        ],
+        "colors": [
+            "Tan",
+            "Black",
+            "Burgundy"
+        ],
+        "stock": 18,
+        "status": "active",
+        "image": "\/assets\/images\/tobias-tullius-Fg15LdqpWrs-unsplash.jpg",
+        "created_at": "2026-02-15T08:20:00+00:00",
+        "updated_at": "2026-02-15T08:20:00+00:00"
+    },
+    {
+        "id": "prod-0c533bfc-99dc-4bdd-b3c6-6bcb7440219f",
+        "name": "New release",
+        "sku": "2",
+        "category_id": "cat-tops",
+        "description": "",
+        "price": 5,
+        "sale_price": 6,
+        "sizes": [],
+        "colors": [],
+        "stock": 3,
+        "status": "active",
+        "image": "\/assets\/images\/product_6a4d24c2d036b6.84175399.jpg",
+        "created_at": "2026-07-07T16:09:38+00:00",
+        "updated_at": "2026-07-07T16:09:38+00:00"
+    }
+]

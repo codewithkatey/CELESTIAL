@@ -8,11 +8,28 @@ class JsonStorage
 {
     private string $dataPath;
 
+    private string $seedPath;
+
+    private bool $usesEphemeralStorage;
+
     public function __construct()
     {
+        $this->seedPath = $this->resolveSeedPath();
         $this->dataPath = $this->resolveDataPath();
+        $this->usesEphemeralStorage = $this->dataPath !== $this->seedPath;
         $this->ensureDataDirectory();
         $this->seedDefaults();
+    }
+
+    private function resolveSeedPath(): string
+    {
+        $rootData = base_path('data');
+
+        if (is_dir($rootData) && file_exists($rootData.DIRECTORY_SEPARATOR.'products.json')) {
+            return $rootData;
+        }
+
+        return storage_path('app/data');
     }
 
     private function resolveDataPath(): string
@@ -25,7 +42,7 @@ class JsonStorage
             return '/tmp/celestial-data';
         }
 
-        return storage_path('app/data');
+        return $this->seedPath;
     }
 
     private function ensureDataDirectory(): void
@@ -37,26 +54,47 @@ class JsonStorage
 
     private function seedDefaults(): void
     {
-        $seedPath = storage_path('app/data');
-
         foreach (['products.json', 'categories.json', 'users.json'] as $file) {
-            $target = $this->dataPath.DIRECTORY_SEPARATOR.$file;
-
-            if (! file_exists($target) && file_exists($seedPath.DIRECTORY_SEPARATOR.$file)) {
-                copy($seedPath.DIRECTORY_SEPARATOR.$file, $target);
-            }
-
-            if (! file_exists($target)) {
-                $default = $file === 'categories.json' ? [] : [];
-                $this->write($file, $default);
-            }
+            $this->syncFromSeed($file);
         }
     }
 
-    public function read(string $file): array
+    private function syncFromSeed(string $file): void
     {
-        $path = $this->path($file);
+        $seedFile = $this->seedPath.DIRECTORY_SEPARATOR.$file;
+        $targetFile = $this->path($file);
 
+        if (! file_exists($seedFile)) {
+            if (! file_exists($targetFile)) {
+                $this->write($file, []);
+            }
+
+            return;
+        }
+
+        if (! file_exists($targetFile) || $this->isEmptyDataFile($targetFile)) {
+            copy($seedFile, $targetFile);
+        }
+    }
+
+    private function isEmptyDataFile(string $path): bool
+    {
+        if (! file_exists($path)) {
+            return true;
+        }
+
+        $contents = file_get_contents($path);
+        $data = json_decode($contents, true);
+
+        if (! is_array($data)) {
+            return true;
+        }
+
+        return count($data) === 0;
+    }
+
+    private function readFile(string $path): array
+    {
         if (! file_exists($path)) {
             return [];
         }
@@ -65,6 +103,25 @@ class JsonStorage
         $data = json_decode($contents, true);
 
         return is_array($data) ? $data : [];
+    }
+
+    public function read(string $file): array
+    {
+        $data = $this->readFile($this->path($file));
+
+        if (empty($data)) {
+            $seedFile = $this->seedPath.DIRECTORY_SEPARATOR.$file;
+
+            if (file_exists($seedFile)) {
+                $data = $this->readFile($seedFile);
+
+                if (! empty($data) && $this->usesEphemeralStorage) {
+                    $this->write($file, $data);
+                }
+            }
+        }
+
+        return $data;
     }
 
     public function write(string $file, array $data): bool

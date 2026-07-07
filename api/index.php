@@ -5,6 +5,7 @@ require __DIR__.'/../vendor/autoload.php';
 $bootstrapDirs = [
     '/tmp/bootstrap/cache',
     '/tmp/views',
+    '/tmp/celestial-data',
 ];
 
 foreach ($bootstrapDirs as $dir) {
