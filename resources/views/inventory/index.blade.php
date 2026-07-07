@@ -195,6 +195,15 @@
         </div>
     </div>
 </div>
+
+<!-- Image Zoom Lightbox -->
+<div class="image-zoom-overlay" id="image-zoom-modal">
+    <button type="button" class="image-zoom-close" id="image-zoom-close" aria-label="Close">&times;</button>
+    <div class="image-zoom-content">
+        <img id="image-zoom-img" src="" alt="Product image">
+        <p id="image-zoom-caption"></p>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

@@ -27,6 +27,7 @@
         bindCategoryForm();
         bindFilters();
         bindImageUpload();
+        bindImageZoom();
         bindDelete();
 
         loadCategories().then(loadStockImages).then(loadProducts);
@@ -191,7 +192,10 @@
 
             const imageSrc = p.image_url || p.image;
             const imageHtml = imageSrc
-                ? `<img src="${imageSrc}" alt="${escapeHtml(p.name)}">`
+                ? `<button type="button" class="product-image-zoom" data-src="${imageSrc}" aria-label="Zoom ${escapeHtml(p.name)}">
+                        <img src="${imageSrc}" alt="${escapeHtml(p.name)}">
+                        <span class="zoom-hint">Click to zoom</span>
+                   </button>`
                 : '<span class="no-image">—</span>';
 
             return `
@@ -232,6 +236,11 @@
             const id = $(this).data('id');
             const name = $(this).data('name');
             confirmDelete(`Delete product "${name}"? This cannot be undone.`, () => deleteProduct(id));
+        });
+
+        $('.product-image-zoom').on('click', function () {
+            const $img = $(this).find('img');
+            openImageZoom($(this).data('src'), $img.attr('alt') || 'Product image');
         });
     }
 
@@ -488,7 +497,12 @@
     }
 
     function setImagePreview(src, path = '') {
-        $('#image-preview').html(`<img src="${src}" alt="Preview">`);
+        $('#image-preview').html(`
+            <button type="button" class="image-preview-zoom" data-src="${src}" aria-label="Zoom image">
+                <img src="${src}" alt="Preview">
+                <span class="zoom-hint">Click to zoom</span>
+            </button>
+        `);
         $('#btn-remove-image').show();
         if (path) {
             selectedImagePath = path;
@@ -518,6 +532,42 @@
         $('#delete-message').text(message);
         deleteCallback = callback;
         openModal('delete-modal');
+    }
+
+    function bindImageZoom() {
+        $(document).on('click', '.image-preview-zoom', function () {
+            openImageZoom($(this).data('src'), $('#product-name').val() || 'Product image');
+        });
+
+        $('#image-zoom-close, #image-zoom-modal').on('click', function (e) {
+            if (e.target === this || $(e.target).is('#image-zoom-close')) {
+                closeImageZoom();
+            }
+        });
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeImageZoom();
+            }
+        });
+
+        $('.image-zoom-content').on('click', function (e) {
+            e.stopPropagation();
+        });
+    }
+
+    function openImageZoom(src, caption = '') {
+        if (!src) return;
+        $('#image-zoom-img').attr('src', src);
+        $('#image-zoom-caption').text(caption || '');
+        $('#image-zoom-modal').addClass('active');
+        $('body').addClass('zoom-open');
+    }
+
+    function closeImageZoom() {
+        $('#image-zoom-modal').removeClass('active');
+        $('body').removeClass('zoom-open');
+        $('#image-zoom-img').attr('src', '');
     }
 
     $(document).ready(init);
