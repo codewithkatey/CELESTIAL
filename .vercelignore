@@ -9,3 +9,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+package.json
+package-lock.json
+vite.config.js

@@ -1,6 +1,8 @@
 {
     "version": 2,
     "framework": null,
+    "installCommand": "composer install --no-ansi --no-dev --optimize-autoloader",
+    "buildCommand": "composer run vercel-build",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.1"
@@ -10,6 +12,10 @@
         {
             "src": "/favicon.svg",
             "dest": "/public/favicon.svg"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/public/favicon.ico"
         },
         {
             "src": "/assets/(.*)",
@@ -27,6 +33,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
+        "APP_NAME": "Celestial",
         "VERCEL": "1",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
