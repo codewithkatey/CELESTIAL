@@ -24,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($url = env('VERCEL_URL')) {
+            \URL::forceRootUrl('https://'.$url);
+        } elseif (env('APP_URL')) {
+            \URL::forceRootUrl(env('APP_URL'));
+        }
+
         if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
