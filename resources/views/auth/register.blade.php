@@ -3,8 +3,11 @@
 @section('title', 'Register')
 
 @section('content')
-<h2 class="auth-title">Create your account</h2>
-<p class="auth-subtitle">Create an account to manage your inventory</p>
+<div class="auth-form-header">
+    <span class="auth-badge">Clothing Store Portal</span>
+    <h2 class="auth-title">Create your account</h2>
+    <p class="auth-subtitle">Start managing your clothing inventory today</p>
+</div>
 
 @if ($errors->any())
     <div class="auth-error">

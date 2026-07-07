@@ -13,15 +13,39 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body class="auth-body">
-    <div class="auth-page">
-        <div class="auth-card">
-            <div class="auth-brand">
-                <img src="{{ asset('favicon.svg') }}" alt="Celestial" class="brand-logo brand-logo-lg">
-                <h1>Celestial</h1>
-                <p>Clothing Inventory</p>
+    <div class="auth-split">
+        <aside class="auth-hero">
+            <div class="auth-hero-grid">
+                <img src="{{ asset('assets/images/dom-hill-nimElTcTNyY-unsplash.jpg') }}" alt="Denim jacket" class="auth-hero-img img-1">
+                <img src="{{ asset('assets/images/milada-vigerova-p8Drpg_duLw-unsplash.jpg') }}" alt="Fashion apparel" class="auth-hero-img img-2">
+                <img src="{{ asset('assets/images/raquel-gambin-kS3YkVtf85U-unsplash.jpg') }}" alt="Clothing collection" class="auth-hero-img img-3">
+                <img src="{{ asset('assets/images/tobias-tullius-Fg15LdqpWrs-unsplash.jpg') }}" alt="Accessories" class="auth-hero-img img-4">
             </div>
-            @yield('content')
-        </div>
+            <div class="auth-hero-overlay"></div>
+            <div class="auth-hero-content">
+                <div class="auth-hero-brand">
+                    <img src="{{ asset('favicon.svg') }}" alt="Celestial" class="brand-logo">
+                    <div>
+                        <h1>Celestial</h1>
+                        <p>Clothing Inventory</p>
+                    </div>
+                </div>
+                <h2 class="auth-hero-title">Manage your apparel collection in one place</h2>
+                <p class="auth-hero-text">Track products, stock levels, categories, and pricing for your clothing business.</p>
+                <div class="auth-features">
+                    <span class="auth-feature">👕 Apparel</span>
+                    <span class="auth-feature">📦 Stock</span>
+                    <span class="auth-feature">🏷️ Pricing</span>
+                    <span class="auth-feature">🗂️ Categories</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="auth-panel">
+            <div class="auth-card">
+                @yield('content')
+            </div>
+        </main>
     </div>
 </body>
 </html>
